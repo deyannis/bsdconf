@@ -4,8 +4,12 @@
 # E-mail:   d.deyannis@gmail.com
 # Modified: Fri 28 Oct 2019
 
+
 # include global conf
 #. /etc/ksh.kshrc
+
+# vim as default editor
+export VISUAL=vim
 
 # EMACS mode
 set -o emacs
@@ -19,14 +23,14 @@ PS1='\u@\h -> '
 # try ls with colors and human readable sizes
 if type colorls > /dev/null
 then
-	alias ls='colorls -h -G'
+	alias ls="colorls -h -G"
 fi
 
 # update locate db in a Linux fashion 
-alias updatedb='/usr/libexec/locate.updatedb'
+alias updatedb="/usr/libexec/locate.updatedb"
 
 # pastebin
-alias sprunge='curl -F "sprunge=<-" http://sprunge.us'
+alias sprunge="curl -F \"sprunge=<-\" http://sprunge.us"
 
 # update ksh 
 alias kshrc=". ~/.kshrc"
