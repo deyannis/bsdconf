@@ -1,0 +1,15 @@
+# Author:   Dimitris Deyannis
+# E-mail:   d.deyannis@gmail.com
+# Modified: Fri 01 Nov 2019
+
+
+# UTF-8 all over
+export LANG=en_US.UTF-8
+
+# disable beep
+xset b off
+
+. $HOME/.profile
+
+# start i3WM
+exec i3
