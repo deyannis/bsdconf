@@ -1,0 +1,84 @@
+drop to shell
+
+dmesg | grep sd
+
+find the drive to install on (eg sd0)
+
+cd /dev && sh MAKEDEV sd0
+
+
+dd if=/dev/urandom of=/dev/rsd0c 
+
+
+#########
+sdX SCASI disc
+wd0 ATA disc
+rsdX raw scasi
+rwdX raw ATA 
+
+part a: boot disk root
+b: boot disk swap
+c: entire disk
+########
+
+write GPT
+fdisk -gy -b 960 sd0
+
+disklabel -E sd0
+	a a
+	"enter"
+	*
+	RAID
+	w
+	q
+
+bioctl -c C -l sd0a softraid0
+
+add pass and remember the new device (sd2)
+
+sh MAKEDEV sd2
+
+overwrite the first MB
+dd if=/dev/zero of=/dev/rsd2c bs=1m count=1
+
+START INSTALL
+
+exit
+
+I
+
+"follow the install"
+
+remember to choose sd2
+
+-------------------------
+
+vi /etc/doas.conf
+	permit persist :wheel
+
+fw_update
+
+doas usermod -L staff ras
+
+vi /etc/fstab
+	softdeps everywhere
+	wxallowed on /usr/local/ports
+
+pkg_add vim git
+add ST repo, make, install
+
+move to graphical
+
+
+# VGA
+pkg_add picom
+picom --backend glx --vsync -f -b 
+
+pkg_add feh dmenu ffmpeg thunar lxappearance i3-gaps i3lock i3status
+
+
+
+sed -i 's/xconsole/#xconsole/' /etc/X11/xenodm/Xsetup_0
+echo 'xset b off' >> /etc/X11/xenodm/Xsetup_0
+
+
