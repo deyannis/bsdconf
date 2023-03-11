@@ -1,6 +1,6 @@
 " Author:   Dimitris Deyannis
 " E-mail:   d.deyannis@gmail.com
-" Modified: Wed 31 Oct 2019
+" Modified: Wed 17 Feb 2023
 
 
 " Enable syntax highlighting
@@ -36,6 +36,12 @@ hi StatusLine	ctermfg=018 ctermbg=010
 hi StatusLineNC	ctermfg=018 ctermbg=010
 hi VertSplit	ctermfg=018 ctermbg=010
 
+" Enable mouse scroll
+set mouse=a
+
+" Fix backspace
+set backspace=indent,eol,start
+
 " Display line numbers
 set number
 hi LineNr ctermfg=033
@@ -56,6 +62,15 @@ set viminfo='20,<2000,s2048,h
 hi SpellBad ctermfg=015 ctermbg=000
 hi SpellCap ctermfg=015 ctermbg=000
 
+" Set tab at 4 spaces for JS, JSON and HTML
+augroup FileTypeSpecificAutocommands
+	autocmd FileType javascript	setlocal tabstop=4 softtabstop=4 shiftwidth=4
+	autocmd FileType json		setlocal tabstop=4 softtabstop=4 shiftwidth=4
+	autocmd FileType tex		setlocal tabstop=4 softtabstop=4 shiftwidth=4
+	autocmd FileType html		setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+	autocmd FileType css		setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
+augroup END
+
 " Disable beeps and flashes
 set visualbell
 set noerrorbells
@@ -69,9 +84,6 @@ if has("autocmd")
 	au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$")
 	    \| exe "normal! g'\"" | endif
 endif
-
-" Fix backspace
-set backspace=indent,eol,start
 
 " Add mappings
 source ~/.vim/mappings.vim

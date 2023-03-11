@@ -6,10 +6,21 @@
 # UTF-8 all over
 export LANG=en_US.UTF-8
 
+# compositor
+picom --backend glx --vsync -f -b
+
+# fix DPI
+xrandr --dpi 96
+
 # disable beep
 xset b off
 
 . $HOME/.profile
 
+# TrackPoint
+xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1 
+xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2 
+xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Axes" 6 7 4 5
+
 # start i3WM
-exec i3
+exec dbus-launch --exit-with-session --sh-syntax i3

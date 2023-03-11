@@ -20,17 +20,35 @@ bind -m '^[[P'='^[[3~'
 # minimal command prompt
 PS1='\u@\h -> '
 
+# doas
+alias doas="doas "
+
 # try ls with colors and human readable sizes
 if type colorls > /dev/null
 then
-	alias ls="colorls -h -G"
+	alias ls="colorls -Gh"
 fi
+
+# check temperatures
+alias lstemp="sysctl hw.sensors"
 
 # update locate db in a Linux fashion 
 alias updatedb="/usr/libexec/locate.updatedb"
 
 # pastebin
 alias sprunge="curl -F \"sprunge=<-\" http://sprunge.us"
+
+# enable hyper-threading
+alias ht_on="sysctl hw.smt=1"
+
+# disable hyper-threading
+alias ht_off="sysctl hw.smt=0"
+
+# daemonize a job
+alias daemon="daemon"
+function daemon {
+	(exec "$@" &) > /dev/null 2>&1
+}
 
 # update ksh 
 alias kshrc=". ~/.kshrc"
