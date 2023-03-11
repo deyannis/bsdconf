@@ -1,15 +1,16 @@
+# Author:   Dimitris Deyannis
+# E-mail:   d.deyannis@gmail.com
+# Modified: Fri 10 Mar 2023
+
 # Should you change your keyboard layout somewhen, delete
 # this file and re-run i3-config-wizard(1).
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-# Dimitris Deyannis
-# d.deyannis@gmail.com
-# 17/10/2016
 
 set $mod Mod4
 
-# FreeType fonts
-font pango:Dejabu Sans Mono 10
+# fonts
+font pango:FontAwesome 10
 
 # window border
 new_window pixel 3
