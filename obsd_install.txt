@@ -65,12 +65,12 @@ create a new partition ~20GB
 mount it on /usr/ports
 
 complete the installation 
+reboot
 -------------------------
-
+syspatch
+fw_update
 vi /etc/doas.conf
 	permit persist :wheel
-
-fw_update
 
 doas usermod -L staff ras
 
