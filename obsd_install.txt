@@ -75,7 +75,7 @@ vi /etc/doas.conf
 doas usermod -L staff ras
 
 vi /etc/fstab
-	softdeps everywhere
+	noatime,softdeps everywhere
 	wxallowed on /usr/ports
 
 
@@ -94,4 +94,40 @@ pkg_add feh dmenu ffmpeg thunar lxappearance i3-gaps i3lock i3status
 sed -i 's/xconsole/#xconsole/' /etc/X11/xenodm/Xsetup_0
 echo 'xset b off' >> /etc/X11/xenodm/Xsetup_0
 
+/etc/login.conf
+staff:\
+        :datasize-cur=infinity:\
+        :datasize-max=infinity:\
+        :maxproc-cur=512:\
+        :maxproc-max=1024:\
+        :openfiles-cur=102400:\
+        :openfiles-max=102400:\
+        :stacksize-cur=32M:\
+        :ignorenologin:\
+        :requirehome@:\
+        :tc=default:
 
+rcctl enable apmd
+rcctl set apmd flags -A 
+rcctl start apmd
+
+/etc/sysctl.conf
+kern.shminfo.shmall=6291456
+kern.shminfo.shmmax=999999999
+kern.shminfo.shmmni=2048
+
+kern.shminfo.shmseg=2048
+kern.seminfo.semmns=4096
+kern.seminfo.semmni=1024
+
+kern.maxproc=3250
+kern.maxfiles=8192
+hw.smt=1
+machdep.allowaperture=1
+
+kern.audio.record=1
+kern.video.record=1
+
+net.inet.udp.recvspace=262144
+net.inet.udp.sendspace=262144
+net.inet.icmp.errppslimit=1000
