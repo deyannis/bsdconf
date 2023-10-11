@@ -1,0 +1,1 @@
+cp sysctl.conf /etc/sysctl.conf
