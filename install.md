@@ -158,7 +158,8 @@ away anything that starts `xconsole`.
 
 Disable the beeps.
 ```
-echo 'xset b off' >> /etc/X11/xenodm/Xsetup_0
+wsconsctl keyboard.bell.volume=0
+echo 'keyboard.bell.volume=0' >> /etc/wsconsctl.conf
 ```
 
 ### Tune *fstab*
@@ -240,10 +241,14 @@ take effect and keep reading if you need a riced up graphical environment.
 
 ## Graphical environment setup and *rice*
 
-This guide uses `i3`
-pkg_add picom
-picom --backend glx --vsync -f -b 
+The graphical interface is based on the `i3` window manager. To set it up 
+install the following:
+```
+pkg_add picom thunar thunar-archive thunar-media-tags thunar-vcs file-roller i3 
+        i3lock 3status dmenu lxappearance ffmpeg feh thunderbird firefox vim 
+	dejavusansmono-nerd-fonts liberation-fonts
+```
 
-pkg_add feh dmenu ffmpeg thunar lxappearance i3-gaps i3lock i3status
-
-
+Use the dot files for `i3` `profile` `kshrc` `x11` and `tmux` provided with this 
+repo. Each folder contains a readme explaining where each config file should be 
+placed.

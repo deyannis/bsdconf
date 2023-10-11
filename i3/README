@@ -2,4 +2,5 @@ NOTE:	You may need to change the interfaces' names and the path to CPU temp.
 
 cp config ~/.i3
 cp i3status.conf ~/.i3status.conf
-cp i3-sensible-terminal /usr/bin/
+cp i3-sensible-terminal /usr/local/bin/
+chmod +x i3-sensible-terminal /usr/local/bin/
