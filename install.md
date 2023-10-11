@@ -103,16 +103,48 @@ USB.
 
 ## Post install
 
+### Add *user* to *staff* group
 Log in as `root` and add your user to the `staff` group.
 ```
 usermod -L staff <user>
 ```
 
-Allow the user to use `doas` by creating `/etc/doas.conf` containing:
+### User privileges
+Allow the user to execute with privileges using `doas` by creating 
+`/etc/doas.conf` containing:
 ```
 permit persist :wheel
 ```
 
+### Connect via Wi-Fi
+If you don't have access to a wired connection, connect to Wi-Fi.
+
+First identify the wireless network card using `ifconfig` (in this case it is 
+`iwm0`) and enable the interface. If the firmware is missing, connect via a 
+wired connection and follow the next section first.
+```
+ifconfig iwm0 up
+```
+
+To scan for available networks use: 
+```
+ifconfig iwm0 scan | more
+```
+
+To connect to one of the available networks create `/etc/hostname.iwm0` with the 
+following:
+```
+nwid "<Network>" wpakey "<password>"
+dhcp
+```
+
+Then enable the connection.
+```
+sh /etc/netstart iwm0
+
+```
+
+### Essential updates
 Log in as <user> and Perform all available updates, using `doas` if needed.
 ```
 fw_update
@@ -120,21 +152,16 @@ syspatch
 pkg_add -u
 ```
 
-Install some basic packages to configure the system.
-```
-pkg_add vim git
-```
+### Disable annoying stuff
+Remove the console from `xenodm`. Edit `/etc/X11/xenodm/Xsetup_0` and comment 
+away anything that starts `xconsole`.
 
-Remove the console from `xenodm`.
-```
-sed -i 's/xconsole/#xconsole/' /etc/X11/xenodm/Xsetup_0
-```
-
-Disable the annoying beeps.
+Disable the beeps.
 ```
 echo 'xset b off' >> /etc/X11/xenodm/Xsetup_0
 ```
 
+### Tune *fstab*
 Edit `/etc/fstab` to slightly bump up the performance and alter every partition 
 except for `swap` by adding the following.
 ```
@@ -143,6 +170,7 @@ noatime,softdep
 
 Also add `wxallowed` for `/usr/ports`.
 
+### Tune the *staff* group
 Bump up the resources for the `staff` group by editing `/etc/login.conf` as 
 follows.
 ```
@@ -159,6 +187,7 @@ staff:\
 	:tc=default:
 ```
 
+### Tune the kernel's parameters
 Then bump up the kernel's parameters as following. In this example, we assume a 
 system with 16GB of RAM so we utilize 4GB for `shmmax` and 4MB for `shmall`. 
 Create `/etc/sysctl.conf` with the following:
@@ -198,6 +227,7 @@ hw.smt=1
 machdep.allowaperture=2
 ```
 
+### Power management
 If the system is installed on a laptop, enable power management.
 ```
 rcctl enable apmd
@@ -205,7 +235,10 @@ rcctl set apmd flags -A
 rcctl start apmd
 ```
 
-## Desktop setup and rice
+At this point you should have a functional system. Reboot for all changes to 
+take effect and keep reading if you need a riced up graphical environment.
+
+## Graphical environment setup and *rice*
 
 This guide uses `i3`
 pkg_add picom
