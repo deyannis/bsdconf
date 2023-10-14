@@ -2,7 +2,7 @@
 #
 # Author:   Dimitris Deyannis
 # E-mail:   d.deyannis@gmail.com
-# Modified: Thu 12 Oct 2023 @ 01:56:30 +0300
+# Modified: Sat 14 Oct 2023 @ 15:56:22 +0300
 
 
 # include global conf
@@ -27,6 +27,12 @@ alias doas="doas "
 if type colorls > /dev/null
 then
 	alias ls="colorls -Gh"
+fi
+
+# try diff with colors
+if type colordiff > /dev/null
+then
+	alias diff="colordiff"
 fi
 
 # check temperatures

@@ -262,6 +262,7 @@ pkg_add picom thunar thunar-archive thunar-media-tags thunar-vcs file-roller
         lxappearance arc-icon-theme arc-theme-solid ffmpeg feh eog thunderbird 
         firefox vim htop wget wheechat dejavusansmono-nerd-fonts noto-emoji 
         noto-cjk liberation-fonts symbola-ttf evince aspell aspell-el colorls 
+	colordiff
 ```
 
 Use the dot files for `i3` `profile` `kshrc` `x11` and `tmux` provided with this 
