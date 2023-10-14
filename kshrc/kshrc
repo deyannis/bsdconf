@@ -2,7 +2,7 @@
 #
 # Author:   Dimitris Deyannis
 # E-mail:   d.deyannis@gmail.com
-# Modified: Fri 28 Oct 2019
+# Modified: Thu 12 Oct 2023 @ 01:56:30 +0300
 
 
 # include global conf
@@ -35,6 +35,8 @@ alias lstemp="sysctl hw.sensors"
 # update locate db in a Linux fashion 
 alias updatedb="/usr/libexec/locate.updatedb"
 
+# list active services
+alias lservice="echo '--- Services ---'; rcctl ls on; echo '----------------'"
 # pastebin
 alias sprunge="curl -F \"sprunge=<-\" http://sprunge.us"
 
@@ -43,6 +45,18 @@ alias ht_on="sysctl hw.smt=1"
 
 # disable hyper-threading
 alias ht_off="sysctl hw.smt=0"
+
+# enable video recording
+alias vrec_on="sysctl kern.video.record=1"
+
+# disable video recording
+alias vrec_off="sysctl kern.video.record=0"
+
+# enable audio recording
+alias arec_on="sysctl kern.audio.record=1"
+
+# disable audio recording
+alias arec_off="sysctl kern.audio.record=0"
 
 # daemonize a job
 alias daemon="daemon"

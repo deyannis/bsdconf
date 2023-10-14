@@ -1,13 +1,13 @@
 # Author:   Dimitris Deyannis
 # E-mail:   d.deyannis@gmail.com
-# Modified: Fri 01 Nov 2019
+# Modified: Sat 14 Oct 2023 @ 15:35:02 +0300
 
 
 # UTF-8 all over
 export LANG=en_US.UTF-8
 
 # compositor
-picom --backend glx --vsync -f -b
+picom -b
 
 # fix DPI
 xrandr --dpi 96

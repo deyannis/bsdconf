@@ -261,7 +261,7 @@ pkg_add picom thunar thunar-archive thunar-media-tags thunar-vcs file-roller
 	tumbler samba gvfs-smb e2fsprogs ntfs_3g avahi i3 i3lock 3status dmenu 
         lxappearance arc-icon-theme arc-theme-solid ffmpeg feh eog thunderbird 
         firefox vim htop wget wheechat dejavusansmono-nerd-fonts noto-emoji 
-        noto-cjk liberation-fonts symbola-ttf evince aspell aspell-el 
+        noto-cjk liberation-fonts symbola-ttf evince aspell aspell-el colorls 
 ```
 
 Use the dot files for `i3` `profile` `kshrc` `x11` and `tmux` provided with this 
